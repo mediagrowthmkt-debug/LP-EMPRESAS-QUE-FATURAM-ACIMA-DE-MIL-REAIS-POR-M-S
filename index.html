@@ -2,15 +2,29 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido</title>
     <meta name="description" content="Sua empresa fatura acima de 1 milhão por mês? 5-10% vira prejuízo por inadimplência. Recupere grandes carteiras com abordagem humanizada e zero custo antecipado.">
     
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
+    <!-- OTIMIZAÇÃO: Preconnect para recursos externos -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- OTIMIZAÇÃO: DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Bootstrap CSS - Preload crítico -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
+    
+    <!-- Font Awesome - Carregar assíncrono -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
+    
+    <!-- Google Fonts - Otimizado com display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -37,6 +51,25 @@
             line-height: 1.6;
             color: var(--dark-modern);
             overflow-x: hidden;
+            /* FIX: Prevenir bounce no mobile quando teclado abre */
+            position: relative;
+        }
+        
+        /* FIX: Evitar scroll indesejado no formulário mobile */
+        @media (max-width: 768px) {
+            .form-container {
+                position: relative;
+                overflow: visible;
+            }
+            
+            .form-step {
+                min-height: auto;
+            }
+            
+            /* Prevenir zoom em inputs no iOS */
+            input, select, textarea {
+                font-size: 16px !important;
+            }
         }
 
         /* BOTÃO FLUTUANTE */
@@ -605,6 +638,18 @@
             color: #00ff88;
         }
         
+        /* Recovery amount mobile */
+        @media (max-width: 480px) {
+            #recoveryAmount {
+                font-size: 26px;
+            }
+            
+            /* Recovery amount footer */
+            #recoveryAmountFooter {
+                font-size: 30px;
+            }
+        }
+        
         .recovery-bar-container {
             width: 100%;
             height: 12px;
@@ -853,27 +898,41 @@
             }
         }
 
-        /* ANIMAÇÕES */
+        /* ANIMAÇÕES - OTIMIZADAS */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+            will-change: auto;
         }
 
         .scale-in {
             opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
         }
 
         .scale-in.visible {
             opacity: 1;
             transform: scale(1);
+            will-change: auto;
+        }
+        
+        /* GPU Acceleration para elementos animados */
+        .recovery-bar, .progress-bar-fill {
+            will-change: width;
+            transform: translateZ(0);
+        }
+        
+        .video-player, .video-overlay {
+            transform: translateZ(0);
         }
 
         /* VÍDEOS SECTION */
@@ -2176,44 +2235,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // Performance: usar scroll-behavior CSS ao invés de JS
+        document.documentElement.style.scrollBehavior = 'auto';
+        
         // Forçar página a carregar no topo
         if (history.scrollRestoration) {
             history.scrollRestoration = 'manual';
         }
-        window.addEventListener('beforeunload', function() {
-            window.scrollTo(0, 0);
-        });
         
-        // Garantir que comece no topo ao carregar
-        window.onload = function() {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 0);
-        };
+        // Garantir que comece no topo ao carregar - SEM setTimeout
+        window.scrollTo(0, 0);
         
-        // Animações on scroll
+        // Animações on scroll - OTIMIZADO com passive listener
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05,
+            rootMargin: '50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // Desconecta após animar para economizar recursos
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
+        // Usar requestIdleCallback para não bloquear o thread principal
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                document.querySelectorAll('.fade-in, .scale-in').forEach(el => observer.observe(el));
+            });
+        } else {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in, .scale-in').forEach(el => observer.observe(el));
+            }, 100);
+        }
 
-        // Smooth scroll - somente para cliques, não no carregamento
+        // Smooth scroll - OTIMIZADO
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                // Ignora se for apenas '#' ou se a página acabou de carregar
                 if (href === '#' || href === '') {
                     e.preventDefault();
                     return;
@@ -2222,8 +2285,9 @@
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
+                    // Usar scrollIntoView sem smooth para melhor performance
                     target.scrollIntoView({
-                        behavior: 'smooth',
+                        behavior: 'auto',
                         block: 'start'
                     });
                 }
@@ -2263,8 +2327,9 @@
                     if (index === stepIndex) {
                         step.classList.add('active');
                         step.style.display = 'block';
+                        // FIX: Não fazer focus automático no mobile para evitar clipping
                         const input = step.querySelector('input, select');
-                        if (input) {
+                        if (input && window.innerWidth > 768) {
                             setTimeout(() => input.focus(), 100);
                         }
                     } else {
@@ -2286,6 +2351,16 @@
                 }
 
                 updateProgressBar();
+                
+                // FIX: Prevenir scroll indesejado no mobile
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: window.pageYOffset,
+                            behavior: 'auto'
+                        });
+                    }, 50);
+                }
             }
 
             function nextStep() {
@@ -2341,7 +2416,7 @@
         initStepForm('leadFormHero', 'progressBarHero', 'submitBtnHero');
         initStepForm('leadForm', 'progressBar', 'submitBtn');
 
-        // RECOVERY COUNTER ANIMATION
+        // RECOVERY COUNTER ANIMATION - OTIMIZADO com requestAnimationFrame
         function animateRecoveryCounter(amountId = 'recoveryAmount', barId = 'recoveryBar', statusId = 'recoveryStatus') {
             const amountEl = document.getElementById(amountId);
             const barEl = document.getElementById(barId);
@@ -2349,11 +2424,9 @@
             
             if (!amountEl || !barEl || !statusEl) return;
             
-            const finalAmount = 2500000; // R$ 2.5 milhões
-            const duration = 6000; // 6 segundos (mais devagar)
-            const steps = 120; // Mais steps para animação mais suave
-            const stepDuration = duration / steps;
-            let currentStep = 0;
+            const finalAmount = 2500000;
+            const duration = 4000; // Reduzido para 4 segundos
+            const startTime = performance.now();
             
             const statusMessages = [
                 'Iniciando recuperação...',
@@ -2361,38 +2434,36 @@
                 'Negociando débitos...',
                 'Processando pagamentos...',
                 'Finalizando recuperação...',
-                '✓ Recuperação concluída com sucesso!'
+                '✓ Recuperação concluída!'
             ];
             
-            const interval = setInterval(() => {
-                currentStep++;
-                const progress = currentStep / steps;
+            function animate(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
                 const currentAmount = Math.floor(finalAmount * progress);
                 
-                // Atualizar barra de progresso
+                // Usar will-change para GPU acceleration
                 barEl.style.width = (progress * 100) + '%';
                 
-                // Atualizar valor
                 if (progress < 0.05) {
-                    // Começa negativo
                     amountEl.textContent = '- R$ ' + Math.floor(500000 * (0.05 - progress) * 20).toLocaleString('pt-BR');
                     amountEl.className = 'recovery-amount negative';
                 } else {
-                    // Positivo crescente
                     amountEl.textContent = '+ R$ ' + currentAmount.toLocaleString('pt-BR');
                     amountEl.className = 'recovery-amount positive';
                 }
                 
-                // Atualizar status
                 const statusIndex = Math.min(Math.floor(progress * statusMessages.length), statusMessages.length - 1);
                 statusEl.textContent = statusMessages[statusIndex];
                 
-                if (currentStep >= steps) {
-                    clearInterval(interval);
-                    // Pulsar no final
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
                     amountEl.style.animation = 'pulse 2s infinite';
                 }
-            }, stepDuration);
+            }
+            
+            requestAnimationFrame(animate);
         }
         
         // Adicionar CSS da animação pulse
@@ -2405,12 +2476,16 @@
         `;
         document.head.appendChild(pulseStyle);
         
-        // Iniciar animação quando a página carregar
-        window.addEventListener('load', () => {
-            setTimeout(() => animateRecoveryCounter(), 1000);
-        });
+        // Iniciar animação quando a página carregar - OTIMIZADO
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                setTimeout(() => animateRecoveryCounter(), 500);
+            });
+        } else {
+            setTimeout(() => animateRecoveryCounter(), 500);
+        }
         
-        // Reiniciar animação quando os elementos entrarem na viewport
+        // Reiniciar animação quando os elementos entrarem na viewport - OTIMIZADO
         const observerRecovery = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2420,14 +2495,21 @@
                     } else {
                         animateRecoveryCounter();
                     }
+                    // Desconecta após animar
+                    observerRecovery.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
         
-        const recoveryCounters = document.querySelectorAll('.recovery-counter');
-        recoveryCounters.forEach(counter => {
-            observerRecovery.observe(counter);
-        });
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                const recoveryCounters = document.querySelectorAll('.recovery-counter');
+                recoveryCounters.forEach(counter => observerRecovery.observe(counter));
+            });
+        } else {
+            const recoveryCounters = document.querySelectorAll('.recovery-counter');
+            recoveryCounters.forEach(counter => observerRecovery.observe(counter));
+        }
 
         // Submissão do formulário HERO
         document.getElementById('leadFormHero').addEventListener('submit', function(e) {
@@ -2515,14 +2597,8 @@
             });
         });
 
-        // Efeito parallax
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-section');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        });
+        // REMOVIDO: Efeito parallax (causa lag no scroll)
+        // Parallax retirado para melhorar performance
 
         // CARROSSEL DE VÍDEOS
         class VideoCarousel {
