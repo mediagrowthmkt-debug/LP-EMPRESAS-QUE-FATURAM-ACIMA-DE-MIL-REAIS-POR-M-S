@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - AMCC Empresas +1M</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #8B0F0F;
+            --primary-dark: #7C0C0C;
+            --dark-modern: #05090D;
+            --accent-gold: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark-modern) 0%, var(--primary-dark) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .thank-you-container {
+            text-align: center;
+            padding: 60px 30px;
+            max-width: 800px;
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            font-size: 4rem;
+            color: var(--dark-modern);
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 0.6s ease 0.6s both;
+        }
+
+        .info-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .next-steps {
+            margin: 40px 0;
+            animation: fadeInUp 0.6s ease 0.8s both;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .step-number {
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+
+        .contact-info {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            animation: fadeInUp 0.6s ease 1s both;
+        }
+
+        .contact-info a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .contact-info a:hover {
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .success-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1>Recebemos sua Solicitação!</h1>
+        
+        <p class="subtitle">
+            Obrigado por confiar no Grupo AMCC para transformar sua inadimplência em caixa.
+        </p>
+        
+        <div class="info-box">
+            <h3><i class="fas fa-rocket"></i> Sua Análise Estratégica Está a Caminho</h3>
+            <p>
+                Nossa equipe de especialistas já está analisando as informações da sua empresa 
+                para preparar um diagnóstico completo da sua carteira de inadimplentes.
+            </p>
+            <p>
+                <strong>Você receberá um contato personalizado em até 24 horas úteis</strong> 
+                com uma projeção de recuperação baseada no perfil da sua empresa.
+            </p>
+        </div>
+        
+        <div class="next-steps">
+            <h3 style="margin-bottom: 30px; font-size: 2rem;">Próximos Passos:</h3>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Análise Detalhada</h4>
+                    <p>Nosso time avalia seu perfil e prepara uma proposta personalizada</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Contato do Especialista</h4>
+                    <p>Você será contatado por um gestor de contas sênior</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Apresentação de Projeções</h4>
+                    <p>Mostramos quanto você pode recuperar em 6, 12 e 24 meses</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Início da Recuperação</h4>
+                    <p>Após aprovação, iniciamos o processo com zero custo antecipado</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <p style="margin-bottom: 15px; font-size: 1.1rem;">
+                <strong>Precisa de atendimento imediato?</strong>
+            </p>
+            <p>
+                <i class="fas fa-phone"></i> 
+                <a href="tel:08009412686">0800 941 2686</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.95rem; color: rgba(255,255,255,0.7);">
+                Horário de atendimento: Segunda a Sexta, 8h às 18h
+            </p>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 1rem; color: rgba(255,255,255,0.7);">
+            <i class="fas fa-shield-alt"></i> Seus dados estão seguros conforme LGPD
+        </p>
+    </div>
+</body>
+</html>
