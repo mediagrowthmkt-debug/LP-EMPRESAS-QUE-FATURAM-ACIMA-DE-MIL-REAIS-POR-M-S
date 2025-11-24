@@ -24,6 +24,44 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     
+    <!-- FORÇA SCROLL PARA TOPO -->
+    <script>
+        // CRÍTICO: Executar ANTES de qualquer renderização
+        (function() {
+            // Desabilitar scroll restoration do navegador
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            
+            // Remover qualquer hash da URL
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            }
+            
+            // Forçar posição 0,0 IMEDIATAMENTE
+            window.scrollTo(0, 0);
+            if (document.documentElement) document.documentElement.scrollTop = 0;
+            if (document.body) document.body.scrollTop = 0;
+            
+            // Prevenir qualquer tentativa de scroll antes do load
+            var preventScroll = function(e) {
+                window.scrollTo(0, 0);
+                if (document.documentElement) document.documentElement.scrollTop = 0;
+                if (document.body) document.body.scrollTop = 0;
+            };
+            
+            window.addEventListener('scroll', preventScroll, {passive: true});
+            
+            // Liberar após página carregar
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    window.removeEventListener('scroll', preventScroll);
+                    window.scrollTo(0, 0);
+                }, 100);
+            }, {once: true});
+        })();
+    </script>
+    
     <!-- OTIMIZAÇÃO: Preconnect para recursos externos -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -2104,7 +2142,7 @@
     </section>
 
     <!-- FORMULÁRIO SECTION -->
-    <section class="formulario-section">
+    <section id="formulario" class="formulario-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -2255,21 +2293,6 @@
     <script>
         // Performance: usar scroll-behavior CSS ao invés de JS
         document.documentElement.style.scrollBehavior = 'auto';
-        
-        // Forçar página a carregar no topo
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
-        
-        // Limpar hash da URL se existir e forçar topo
-        if (window.location.hash) {
-            history.replaceState(null, null, ' ');
-        }
-        
-        // Garantir que comece no topo ao carregar - IMEDIATAMENTE
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
         
         // Animações on scroll - OTIMIZADO com passive listener
         const observerOptions = {
