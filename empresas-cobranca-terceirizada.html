@@ -188,11 +188,12 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             animation: fadeIn 0.3s ease;
+            overflow-y: auto;
         }
 
         .whatsapp-modal-content {
             background-color: white;
-            margin: 10% auto;
+            margin: 5vh auto;
             padding: 40px;
             border-radius: 20px;
             width: 90%;
@@ -200,6 +201,14 @@
             position: relative;
             animation: slideDown 0.3s ease;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .whatsapp-modal-content {
+                margin: 8vh auto;
+                padding: 50px;
+                max-width: 550px;
+            }
         }
 
         .whatsapp-modal-close {
