@@ -288,6 +288,17 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
+        /* WhatsApp CTA Buttons */
+        .whatsapp-cta-btn {
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-cta-btn:hover {
+            background: #128C7E !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5) !important;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -305,9 +316,8 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 8px 25px rgba(139, 15, 15, 0.3); }
-            50% { box-shadow: 0 8px 35px rgba(139, 15, 15, 0.5); }
-            100% { box-shadow: 0 8px 25px rgba(139, 15, 15, 0.3); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
         /* HERO SECTION - FOCADO EM GRANDES EMPRESAS */
@@ -1553,15 +1563,28 @@
             <form id="whatsappForm" name="whatsapp_contact_form">
                 <div class="whatsapp-form-group">
                     <label for="whatsappNome">Nome Completo *</label>
-                    <input type="text" id="whatsappNome" name="full_name" required placeholder="Digite seu nome completo">
-                </div>
-                <div class="whatsapp-form-group">
-                    <label for="whatsappEmail">E-mail *</label>
-                    <input type="email" id="whatsappEmail" name="email" required placeholder="Digite seu e-mail">
+                    <input type="text" id="whatsappNome" name="first_name" required placeholder="Digite seu nome completo">
                 </div>
                 <div class="whatsapp-form-group">
                     <label for="empresaNome">Nome da Empresa *</label>
                     <input type="text" id="empresaNome" name="company_name" required placeholder="Digite o nome da sua empresa">
+                </div>
+                <div class="whatsapp-form-group">
+                    <label for="whatsappTelefone">Telefone de Contato *</label>
+                    <input type="tel" id="whatsappTelefone" name="phone" class="telefone-mask" required placeholder="(00) 00000-0000">
+                </div>
+                <div class="whatsapp-form-group">
+                    <label for="valorInadimplencia">Valor Estimado em Inadimplência *</label>
+                    <select id="valorInadimplencia" name="qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto" required>
+                        <option value="">Selecione uma faixa...</option>
+                        <option value="50k_100k">R$ 50.000 - R$ 100.000</option>
+                        <option value="100k_200k">R$ 100.000 - R$ 200.000</option>
+                        <option value="200k_500k">R$ 200.000 - R$ 500.000</option>
+                        <option value="500k_1m">R$ 500.000 - R$ 1.000.000</option>
+                        <option value="1m_3m">R$ 1.000.000 - R$ 3.000.000</option>
+                        <option value="3m_plus">Acima de R$ 3.000.000</option>
+                        <option value="nao_sei">Não sei informar</option>
+                    </select>
                 </div>
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
@@ -1605,89 +1628,38 @@
                 </div>
                 
                 <div class="col-lg-6">
-                    <div id="formulario" class="form-container scale-in" style="margin-top: 0; padding: 30px 25px;">
+                    <div id="formulario" class="form-container scale-in" style="margin-top: 0; padding: 40px 30px; text-align: center;">
                         <div class="form-header">
-                            <h2 style="font-size: 1.6rem; margin-bottom: 8px;">
+                            <h2 style="font-size: 1.8rem; margin-bottom: 15px;">
                                 <i class="fas fa-chart-bar"></i> Análise Gratuita
                             </h2>
-                            <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                            <p style="font-size: 1rem; margin-bottom: 30px;">
                                 Descubra quanto sua empresa pode recuperar. 
                                 <strong>Sem custo, sem compromisso.</strong>
                             </p>
                         </div>
                         
-                        <!-- Progress Bar -->
-                        <div class="progress-bar-container" style="margin-bottom: 25px;">
-                            <div class="progress-bar-fill" id="progressBarHero" style="width: 0%; height: 4px; background: var(--accent-gold); border-radius: 2px; transition: width 0.3s ease;"></div>
-                        </div>
-                        
-                        <form id="leadFormHero" action="#" method="POST" name="lead_form_hero">
-                            <!-- Step 1: Nome -->
-                            <div class="form-step active" data-step="1">
-                                <div class="form-group">
-                                    <label for="nome_hero">Qual o seu nome? *</label>
-                                    <input type="text" class="form-control" id="nome_hero" name="full_name" required 
-                                           placeholder="Digite seu nome completo">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Step 2: Empresa -->
-                            <div class="form-step" data-step="2" style="display: none;">
-                                <div class="form-group">
-                                    <label for="empresa_hero">Qual o nome da sua empresa? *</label>
-                                    <input type="text" class="form-control" id="empresa_hero" name="company_name" required 
-                                           placeholder="Nome da sua empresa">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Step 3: Email -->
-                            <div class="form-step" data-step="3" style="display: none;">
-                                <div class="form-group">
-                                    <label for="email_hero">Qual o seu melhor e-mail? *</label>
-                                    <input type="email" class="form-control" id="email_hero" name="email" required 
-                                           placeholder="seu@email.com">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Step 4: Telefone -->
-                            <div class="form-step" data-step="4" style="display: none;">
-                                <div class="form-group">
-                                    <label for="telefone_hero">Qual o seu WhatsApp? *</label>
-                                    <input type="tel" class="form-control telefone-mask" id="telefone_hero" name="phone" required 
-                                           placeholder="(11) 99999-9999">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Step 5: Valor Inadimplência -->
-                            <div class="form-step" data-step="5" style="display: none;">
-                                <div class="form-group">
-                                    <label for="valor_inadimplencia_hero">Qual o valor estimado em inadimplência? *</label>
-                                    <select class="form-control" id="valor_inadimplencia_hero" name="valor_inadimplencia" required>
-                                        <option value="">Selecione o valor</option>
-                                        <option value="100k_500k">R$ 100.000 - R$ 500.000</option>
-                                        <option value="500k_1m">R$ 500.000 - R$ 1.000.000</option>
-                                        <option value="1m_3m">R$ 1.000.000 - R$ 3.000.000</option>
-                                        <option value="acima_3m">Acima de R$ 3.000.000</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn" id="submitBtnHero" style="display: none;">
-                                <i class="fas fa-paper-plane"></i> RECEBER ANÁLISE GRATUITA
-                            </button>
-                        </form>
+                        <!-- WhatsApp CTA Button -->
+                        <button id="heroWhatsAppBtn" class="whatsapp-cta-btn" style="
+                            background: #25D366;
+                            color: white;
+                            border: none;
+                            font-size: 1.2rem;
+                            font-weight: 600;
+                            padding: 20px 30px;
+                            border-radius: 12px;
+                            cursor: pointer;
+                            width: 100%;
+                            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                        ">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+                            RECEBER ANÁLISE GRATUITA
+                        </button>
                         
                         <!-- Recovery Counter -->
                         <div class="recovery-counter">
@@ -2331,7 +2303,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="form-container scale-in">
+                    <div class="form-container scale-in" style="text-align: center;">
                         <div class="form-header">
                             <h2>
                                 <i class="fas fa-chart-bar"></i> Análise Gratuita e Estratégica
@@ -2342,95 +2314,44 @@
                             </p>
                         </div>
                         
-                        <!-- Progress Bar -->
-                        <div class="progress-bar-container" style="margin-bottom: 30px;">
-                            <div class="progress-bar-fill" id="progressBar" style="width: 0%; height: 4px; background: var(--accent-gold); border-radius: 2px; transition: width 0.3s ease;"></div>
-                        </div>
+                        <!-- WhatsApp CTA Button -->
+                        <button id="mainWhatsAppBtn" class="whatsapp-cta-btn" style="
+                            background: #25D366;
+                            color: white;
+                            border: none;
+                            max-width: 500px;
+                            margin: 0 auto;
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            padding: 22px 35px;
+                            border-radius: 12px;
+                            cursor: pointer;
+                            width: 100%;
+                            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 12px;
+                        ">
+                            <i class="fab fa-whatsapp" style="font-size: 1.6rem;"></i>
+                            SOLICITAR ANÁLISE ESTRATÉGICA
+                        </button>
                         
-                        <form id="leadForm" action="#" method="POST" name="lead_form_main">
-                            <!-- Step 1: Nome -->
-                            <div class="form-step active" data-step="1">
-                                <div class="form-group">
-                                    <label for="nome">Qual o seu nome? *</label>
-                                    <input type="text" class="form-control" id="nome" name="full_name" required 
-                                           placeholder="Digite seu nome completo">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
+                        <div class="trust-badges" style="margin-top: 30px;">
+                            <div class="trust-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Dados 100% Seguros (LGPD)</span>
                             </div>
-                            
-                            <!-- Step 2: Empresa -->
-                            <div class="form-step" data-step="2" style="display: none;">
-                                <div class="form-group">
-                                    <label for="empresa">Qual o nome da sua empresa? *</label>
-                                    <input type="text" class="form-control" id="empresa" name="company_name" required 
-                                           placeholder="Nome da sua empresa">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
+                            <div class="trust-badge">
+                                <i class="fas fa-user-shield"></i>
+                                <span>Confidencialidade Garantida</span>
                             </div>
-                            
-                            <!-- Step 3: Email -->
-                            <div class="form-step" data-step="3" style="display: none;">
-                                <div class="form-group">
-                                    <label for="email">Qual o seu melhor e-mail? *</label>
-                                    <input type="email" class="form-control" id="email" name="email" required 
-                                           placeholder="seu@email.com">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
+                            <div class="trust-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>Resposta em 24h</span>
                             </div>
-                            
-                            <!-- Step 4: Telefone -->
-                            <div class="form-step" data-step="4" style="display: none;">
-                                <div class="form-group">
-                                    <label for="telefone">Qual o seu WhatsApp? *</label>
-                                    <input type="tel" class="form-control telefone-mask" id="telefone" name="phone" required 
-                                           placeholder="(11) 99999-9999">
-                                </div>
-                                <button type="button" class="submit-btn next-step-btn">
-                                    Próximo <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Step 5: Valor Inadimplência -->
-                            <div class="form-step" data-step="5" style="display: none;">
-                                <div class="form-group">
-                                    <label for="valor_inadimplencia">Qual o valor estimado em inadimplência? *</label>
-                                    <select class="form-control" id="valor_inadimplencia" name="valor_inadimplencia" required>
-                                        <option value="">Selecione o valor</option>
-                                        <option value="100k_500k">R$ 100.000 - R$ 500.000</option>
-                                        <option value="500k_1m">R$ 500.000 - R$ 1.000.000</option>
-                                        <option value="1m_3m">R$ 1.000.000 - R$ 3.000.000</option>
-                                        <option value="acima_3m">Acima de R$ 3.000.000</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="text-center">
-                                <button type="submit" class="submit-btn" id="submitBtn" style="display: none;">
-                                    <i class="fas fa-rocket"></i> Solicitar Análise Estratégica Gratuita
-                                </button>
-                                
-                                <div class="trust-badges">
-                                    <div class="trust-badge">
-                                        <i class="fas fa-lock"></i>
-                                        <span>Dados 100% Seguros (LGPD)</span>
-                                    </div>
-                                    <div class="trust-badge">
-                                        <i class="fas fa-user-shield"></i>
-                                        <span>Confidencialidade Garantida</span>
-                                    </div>
-                                    <div class="trust-badge">
-                                        <i class="fas fa-clock"></i>
-                                        <span>Resposta em 24h</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                         
                         <!-- Recovery Counter Footer -->
                         <div class="recovery-counter" style="margin-top: 30px;">
@@ -2553,113 +2474,8 @@
             });
         });
 
-        // FORMULÁRIO STEP-BY-STEP
-        function initStepForm(formId, progressBarId, submitBtnId) {
-            const form = document.getElementById(formId);
-            const steps = form.querySelectorAll('.form-step');
-            const progressBar = document.getElementById(progressBarId);
-            const submitBtn = document.getElementById(submitBtnId);
-            let currentStep = 0;
-            const totalSteps = steps.length;
-
-            function updateProgressBar() {
-                const progress = ((currentStep + 1) / totalSteps) * 100;
-                progressBar.style.width = progress + '%';
-            }
-
-            function showStep(stepIndex) {
-                steps.forEach((step, index) => {
-                    if (index === stepIndex) {
-                        step.classList.add('active');
-                        step.style.display = 'block';
-                        // FIX: Não fazer focus automático no mobile para evitar clipping
-                        const input = step.querySelector('input, select');
-                        if (input && window.innerWidth > 768) {
-                            setTimeout(() => input.focus(), 100);
-                        }
-                    } else {
-                        step.classList.remove('active');
-                        if (index < stepIndex) {
-                            step.classList.add('exiting');
-                        }
-                        setTimeout(() => {
-                            step.style.display = 'none';
-                        }, 400);
-                    }
-                });
-
-                // Mostrar botão de submit no último step
-                if (stepIndex === totalSteps - 1) {
-                    submitBtn.style.display = 'block';
-                } else {
-                    submitBtn.style.display = 'none';
-                }
-
-                updateProgressBar();
-                
-                // FIX: Prevenir scroll indesejado no mobile
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: window.pageYOffset,
-                            behavior: 'auto'
-                        });
-                    }, 50);
-                }
-            }
-
-            function nextStep() {
-                const currentInput = steps[currentStep].querySelector('input, select');
-                
-                if (currentInput && currentInput.checkValidity()) {
-                    if (currentStep < totalSteps - 1) {
-                        currentStep++;
-                        showStep(currentStep);
-                    }
-                } else {
-                    currentInput.reportValidity();
-                }
-            }
-
-            // Event listeners para cada input
-            steps.forEach((step, index) => {
-                const input = step.querySelector('input, select');
-                if (input) {
-                    // Enter key ou blur para avançar
-                    input.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter' && input.type !== 'submit') {
-                            e.preventDefault();
-                            nextStep();
-                        }
-                    });
-
-                    // Para select, avança automaticamente ao selecionar
-                    if (input.tagName === 'SELECT') {
-                        input.addEventListener('change', () => {
-                            setTimeout(nextStep, 300);
-                        });
-                    } else {
-                        // Para inputs de texto, avança ao pressionar Enter ou clicar fora
-                        input.addEventListener('blur', () => {
-                            if (input.value && input.checkValidity() && index === currentStep) {
-                                setTimeout(() => {
-                                    if (index === currentStep) {
-                                        nextStep();
-                                    }
-                                }, 100);
-                            }
-                        });
-                    }
-                }
-            });
-
-            // Inicializar
-            showStep(0);
-        }
-
-        // Inicializar ambos os formulários
-        initStepForm('leadFormHero', 'progressBarHero', 'submitBtnHero');
-        initStepForm('leadForm', 'progressBar', 'submitBtn');
+        // REMOVIDO: Função initStepForm e suas chamadas
+        // Formulários multi-step removidos, agora usamos apenas modal WhatsApp
 
         // RECOVERY COUNTER ANIMATION - OTIMIZADO com requestAnimationFrame
         function animateRecoveryCounter(amountId = 'recoveryAmount', barId = 'recoveryBar', statusId = 'recoveryStatus') {
@@ -2756,123 +2572,8 @@
             recoveryCounters.forEach(counter => observerRecovery.observe(counter));
         }
 
-        // Submissão do formulário HERO
-        document.getElementById('leadFormHero').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            const dataToSend = {
-                name: formData.get('full_name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                empresa: formData.get('company_name'),
-                plataforma: 'Campanha Empresas +1M - Hero',
-                question: `Inadimplência: ${document.getElementById('valor_inadimplencia_hero').options[document.getElementById('valor_inadimplencia_hero').selectedIndex].text}`,
-                source: 'AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido',
-                tags: ['AMCC', 'Empresas +1M', 'Alto Faturamento', 'Grandes Carteiras', 'Form Hero']
-            };
-            
-            const submitBtn = e.target.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando análise...';
-            submitBtn.disabled = true;
-            
-            // Envia para o GHL primeiro
-            if (typeof window.LCTracker !== 'undefined') {
-                try {
-                    await window.LCTracker.submitForm(form);
-                    console.log('[GHL] Form Hero submitted successfully');
-                } catch (error) {
-                    console.error('[GHL] Error submitting Form Hero:', error);
-                }
-            }
-            
-            // Aguarda 500ms para garantir que o GHL processou
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            fetch('https://hook.us2.make.com/08wombkl1yfcab6s4jwuot97v0bfe99r', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend)
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'obrigado.html';
-                } else {
-                    throw new Error('Erro no envio');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Dados enviados! Nossa equipe entrará em contato em até 24h.');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-
-        // Submissão do formulário principal
-        document.getElementById('leadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            const dataToSend = {
-                name: formData.get('full_name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                empresa: formData.get('company_name'),
-                plataforma: 'Campanha Empresas +1M',
-                question: `Inadimplência: ${document.getElementById('valor_inadimplencia').options[document.getElementById('valor_inadimplencia').selectedIndex].text}`,
-                source: 'AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido',
-                tags: ['AMCC', 'Empresas +1M', 'Alto Faturamento', 'Grandes Carteiras']
-            };
-            
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando análise...';
-            submitBtn.disabled = true;
-            
-            // Envia para o GHL primeiro
-            if (typeof window.LCTracker !== 'undefined') {
-                try {
-                    await window.LCTracker.submitForm(form);
-                    console.log('[GHL] Main Form submitted successfully');
-                } catch (error) {
-                    console.error('[GHL] Error submitting Main Form:', error);
-                }
-            }
-            
-            // Aguarda 500ms para garantir que o GHL processou
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            fetch('https://hook.us2.make.com/08wombkl1yfcab6s4jwuot97v0bfe99r', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend)
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'obrigado.html';
-                } else {
-                    throw new Error('Erro no envio');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Dados enviados! Nossa equipe entrará em contato em até 24h.');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
+        // REMOVIDO: Handlers dos formulários antigos (leadFormHero e leadForm)
+        // Agora todos os CTAs abrem o modal WhatsApp unificado
 
         // REMOVIDO: Efeito parallax (causa lag no scroll)
         // Parallax retirado para melhorar performance
@@ -3236,15 +2937,24 @@
             const form = e.target;
             const formData = new FormData(form);
             
-            const nomeCompleto = formData.get('full_name');
-            const email = formData.get('email');
-            const empresaNome = formData.get('company_name');
+            const nome = formData.get('first_name');
+            const empresa = formData.get('company_name');
+            const telefone = formData.get('phone');
+            const valorKey = formData.get('qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto');
             
-            if (nomeCompleto && email && empresaNome) {
-                const phoneNumber = '5548998430114'; // +55 48 99843-0114
-                const message = `Olá, vim pela campanha do Google.\nNome: ${nomeCompleto}\nE-mail: ${email}\nMinha empresa é: ${empresaNome}`;
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                
+            // Mapear valor para texto legível
+            const valorTextos = {
+                '50k_100k': 'R$ 50.000 - R$ 100.000',
+                '100k_200k': 'R$ 100.000 - R$ 200.000',
+                '200k_500k': 'R$ 200.000 - R$ 500.000',
+                '500k_1m': 'R$ 500.000 - R$ 1.000.000',
+                '1m_3m': 'R$ 1.000.000 - R$ 3.000.000',
+                '3m_plus': 'Acima de R$ 3.000.000',
+                'nao_sei': 'Não sei informar'
+            };
+            const valorTexto = valorTextos[valorKey] || valorKey;
+            
+            if (nome && empresa && telefone && valorKey) {
                 // Envia para o GHL primeiro
                 if (typeof window.LCTracker !== 'undefined') {
                     try {
@@ -3257,6 +2967,17 @@
                 
                 // Aguarda 500ms para garantir que o GHL processou
                 await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Montar mensagem WhatsApp
+                const phoneNumber = '5548998430114'; // +55 48 99843-0114
+                const message = `Olá, vim pela campanha do Google Ads - Landing Page Empresas AMCC.
+
+*Nome:* ${nome}
+*Empresa:* ${empresa}
+*Telefone:* ${telefone}
+*Valor Estimado em Inadimplência:* ${valorTexto}`;
+                
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
                 // Abrir WhatsApp em nova aba
                 window.open(whatsappURL, '_blank');
@@ -3279,6 +3000,26 @@
                 }
             }
         });
+
+        // Event Listeners para Botões WhatsApp CTA nas seções Hero e Main
+        const heroWhatsAppBtn = document.getElementById('heroWhatsAppBtn');
+        const mainWhatsAppBtn = document.getElementById('mainWhatsAppBtn');
+        
+        if (heroWhatsAppBtn) {
+            heroWhatsAppBtn.addEventListener('click', function() {
+                whatsappModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                console.log('[DEBUG] Hero WhatsApp Button clicked');
+            });
+        }
+        
+        if (mainWhatsAppBtn) {
+            mainWhatsAppBtn.addEventListener('click', function() {
+                whatsappModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                console.log('[DEBUG] Main WhatsApp Button clicked');
+            });
+        }
     </script>
 </body>
 </html>
