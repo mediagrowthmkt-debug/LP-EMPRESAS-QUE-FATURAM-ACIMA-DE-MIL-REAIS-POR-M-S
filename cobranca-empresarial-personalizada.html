@@ -1548,12 +1548,20 @@
             <div class="whatsapp-modal-header">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Fale Conosco no WhatsApp</h3>
-                <p>Informe o nome da sua empresa</p>
+                <p>Informe seus dados para contato</p>
             </div>
-            <form id="whatsappForm">
+            <form id="whatsappForm" name="whatsapp_contact_form">
+                <div class="whatsapp-form-group">
+                    <label for="whatsappNome">Nome Completo *</label>
+                    <input type="text" id="whatsappNome" name="full_name" required placeholder="Digite seu nome completo">
+                </div>
+                <div class="whatsapp-form-group">
+                    <label for="whatsappEmail">E-mail *</label>
+                    <input type="email" id="whatsappEmail" name="email" required placeholder="Digite seu e-mail">
+                </div>
                 <div class="whatsapp-form-group">
                     <label for="empresaNome">Nome da Empresa *</label>
-                    <input type="text" id="empresaNome" name="empresaNome" required placeholder="Digite o nome da sua empresa">
+                    <input type="text" id="empresaNome" name="company_name" required placeholder="Digite o nome da sua empresa">
                 </div>
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
@@ -2749,14 +2757,17 @@
         }
 
         // Submissão do formulário HERO
-        document.getElementById('leadFormHero').addEventListener('submit', function(e) {
+        document.getElementById('leadFormHero').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const formData = {
-                name: document.getElementById('nome_hero').value,
-                email: document.getElementById('email_hero').value,
-                phone: document.getElementById('telefone_hero').value,
-                empresa: document.getElementById('empresa_hero').value,
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            const dataToSend = {
+                name: formData.get('full_name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                empresa: formData.get('company_name'),
                 plataforma: 'Campanha Empresas +1M - Hero',
                 question: `Inadimplência: ${document.getElementById('valor_inadimplencia_hero').options[document.getElementById('valor_inadimplencia_hero').selectedIndex].text}`,
                 source: 'AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido',
@@ -2769,12 +2780,25 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando análise...';
             submitBtn.disabled = true;
             
+            // Envia para o GHL primeiro
+            if (typeof window.LCTracker !== 'undefined') {
+                try {
+                    await window.LCTracker.submitForm(form);
+                    console.log('[GHL] Form Hero submitted successfully');
+                } catch (error) {
+                    console.error('[GHL] Error submitting Form Hero:', error);
+                }
+            }
+            
+            // Aguarda 500ms para garantir que o GHL processou
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
             fetch('https://hook.us2.make.com/08wombkl1yfcab6s4jwuot97v0bfe99r', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(dataToSend)
             })
             .then(response => {
                 if (response.ok) {
@@ -2792,14 +2816,17 @@
         });
 
         // Submissão do formulário principal
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const formData = {
-                name: document.getElementById('nome').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('telefone').value,
-                empresa: document.getElementById('empresa').value,
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            const dataToSend = {
+                name: formData.get('full_name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                empresa: formData.get('company_name'),
                 plataforma: 'Campanha Empresas +1M',
                 question: `Inadimplência: ${document.getElementById('valor_inadimplencia').options[document.getElementById('valor_inadimplencia').selectedIndex].text}`,
                 source: 'AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido',
@@ -2812,12 +2839,25 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando análise...';
             submitBtn.disabled = true;
             
+            // Envia para o GHL primeiro
+            if (typeof window.LCTracker !== 'undefined') {
+                try {
+                    await window.LCTracker.submitForm(form);
+                    console.log('[GHL] Main Form submitted successfully');
+                } catch (error) {
+                    console.error('[GHL] Error submitting Main Form:', error);
+                }
+            }
+            
+            // Aguarda 500ms para garantir que o GHL processou
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
             fetch('https://hook.us2.make.com/08wombkl1yfcab6s4jwuot97v0bfe99r', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(dataToSend)
             })
             .then(response => {
                 if (response.ok) {
@@ -3190,24 +3230,33 @@
         });
 
         // Enviar para WhatsApp ao submeter o formulário
-        whatsappForm.addEventListener('submit', function(e) {
+        whatsappForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const empresaNome = document.getElementById('empresaNome').value.trim();
+            const form = e.target;
+            const formData = new FormData(form);
             
-            if (empresaNome) {
+            const nomeCompleto = formData.get('full_name');
+            const email = formData.get('email');
+            const empresaNome = formData.get('company_name');
+            
+            if (nomeCompleto && email && empresaNome) {
                 const phoneNumber = '5548998430114'; // +55 48 99843-0114
-                const message = `Olá, vim pela campanha do Google. Minha empresa é: ${empresaNome}`;
+                const message = `Olá, vim pela campanha do Google.\nNome: ${nomeCompleto}\nE-mail: ${email}\nMinha empresa é: ${empresaNome}`;
                 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 
-                // Tracking GoHighLevel - WhatsApp Contact
+                // Envia para o GHL primeiro
                 if (typeof window.LCTracker !== 'undefined') {
-                    window.LCTracker.track('whatsapp_contact', {
-                        empresa: empresaNome,
-                        contact_method: 'whatsapp',
-                        phone: phoneNumber
-                    });
+                    try {
+                        await window.LCTracker.submitForm(form);
+                        console.log('[GHL] WhatsApp Form submitted successfully');
+                    } catch (error) {
+                        console.error('[GHL] Error submitting WhatsApp Form:', error);
+                    }
                 }
+                
+                // Aguarda 500ms para garantir que o GHL processou
+                await new Promise(resolve => setTimeout(resolve, 500));
 
                 // Abrir WhatsApp em nova aba
                 window.open(whatsappURL, '_blank');
