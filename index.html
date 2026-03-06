@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="Sua empresa fatura acima de 1 milhão por mês? 5-10% vira prejuízo por inadimplência. Recupere grandes carteiras com abordagem humanizada e zero custo antecipado.">
     
     <!-- Meta Pixel Code -->
@@ -138,19 +139,19 @@
             }
         }
 
-        /* BOTÃO FLUTUANTE */
+        /* BOTÃO FLUTUANTE WHATSAPP */
         .floating-btn {
             position: fixed;
             right: 30px;
             bottom: 30px;
-            background: var(--primary-color);
+            background: #25D366;
             color: white;
             border: none;
             border-radius: 50%;
             width: 60px;
             height: 60px;
-            font-size: 24px;
-            box-shadow: 0 8px 25px rgba(139, 15, 15, 0.3);
+            font-size: 28px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -158,13 +159,141 @@
             align-items: center;
             justify-content: center;
             animation: pulse 2s infinite;
+            cursor: pointer;
         }
 
         .floating-btn:hover {
-            background: var(--primary-dark);
+            background: #128C7E;
             transform: scale(1.05);
             color: white;
             text-decoration: none;
+        }
+
+        /* MODAL WHATSAPP */
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .whatsapp-modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideDown 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .whatsapp-modal-close:hover {
+            color: #333;
+        }
+
+        .whatsapp-modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-modal-header i {
+            font-size: 60px;
+            color: #25D366;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-modal-header h3 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-modal-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .whatsapp-form-group {
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .whatsapp-form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .whatsapp-form-group input:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+
+        .whatsapp-submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-submit-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes pulse {
@@ -1399,10 +1528,32 @@
     </script>
 </head>
 <body>
-    <!-- BOTÃO FLUTUANTE -->
-    <a href="#formulario" class="floating-btn">
-        <i class="fas fa-phone"></i>
-    </a>
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <button class="floating-btn" id="whatsappFloatingBtn" aria-label="Contato WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <!-- MODAL WHATSAPP -->
+    <div id="whatsappModal" class="whatsapp-modal">
+        <div class="whatsapp-modal-content">
+            <span class="whatsapp-modal-close" id="whatsappModalClose">&times;</span>
+            <div class="whatsapp-modal-header">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Fale Conosco no WhatsApp</h3>
+                <p>Informe o nome da sua empresa</p>
+            </div>
+            <form id="whatsappForm">
+                <div class="whatsapp-form-group">
+                    <label for="empresaNome">Nome da Empresa *</label>
+                    <input type="text" id="empresaNome" name="empresaNome" required placeholder="Digite o nome da sua empresa">
+                </div>
+                <button type="submit" class="whatsapp-submit-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Iniciar Conversa
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="hero-section">
@@ -3006,6 +3157,65 @@
                     }
                 });
             });
+        });
+
+        // WHATSAPP MODAL FUNCTIONALITY
+        const whatsappModal = document.getElementById('whatsappModal');
+        const whatsappFloatingBtn = document.getElementById('whatsappFloatingBtn');
+        const whatsappModalClose = document.getElementById('whatsappModalClose');
+        const whatsappForm = document.getElementById('whatsappForm');
+
+        // Abrir modal ao clicar no botão flutuante
+        whatsappFloatingBtn.addEventListener('click', function() {
+            whatsappModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fechar modal ao clicar no X
+        whatsappModalClose.addEventListener('click', function() {
+            whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar modal ao clicar fora dele
+        window.addEventListener('click', function(event) {
+            if (event.target === whatsappModal) {
+                whatsappModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Enviar para WhatsApp ao submeter o formulário
+        whatsappForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const empresaNome = document.getElementById('empresaNome').value.trim();
+            
+            if (empresaNome) {
+                const phoneNumber = '5548998430114'; // +55 48 99843-0114
+                const message = `Olá, vim pela campanha do Google. Minha empresa é: ${empresaNome}`;
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                // Abrir WhatsApp em nova aba
+                window.open(whatsappURL, '_blank');
+                
+                // Fechar modal
+                whatsappModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Limpar formulário
+                whatsappForm.reset();
+
+                // Tracking Meta Pixel
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Contact');
+                }
+
+                // Tracking Microsoft Clarity
+                if (typeof clarity !== 'undefined') {
+                    clarity('event', 'whatsapp_click');
+                }
+            }
         });
     </script>
 </body>
