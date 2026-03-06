@@ -251,18 +251,26 @@
             font-size: 14px;
         }
 
-        .whatsapp-form-group input {
+        .whatsapp-form-group input,
+        .whatsapp-form-group textarea {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
+            font-family: inherit;
         }
 
-        .whatsapp-form-group input:focus {
+        .whatsapp-form-group input:focus,
+        .whatsapp-form-group textarea:focus {
             outline: none;
             border-color: #25D366;
+        }
+
+        .whatsapp-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         .whatsapp-submit-btn {
@@ -1561,8 +1569,14 @@
                 </div>
                 <div class="whatsapp-form-group">
                     <label for="empresaNome">Nome da Empresa *</label>
-                    <input type="text" id="empresaNome" name="company_name" required placeholder="Digite o nome da sua empresa">
+                    <input type="text" id="empresaNome" required placeholder="Digite o nome da sua empresa">
                 </div>
+                <div class="whatsapp-form-group">
+                    <label for="whatsappPergunta">Sua Pergunta ou Mensagem (opcional)</label>
+                    <textarea id="whatsappPergunta" rows="3" placeholder="Como podemos ajudar sua empresa?"></textarea>
+                </div>
+                <!-- Campo hidden que será preenchido com empresa + pergunta -->
+                <input type="hidden" id="whatsappDescription" name="description">
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
                     Iniciar Conversa
@@ -3243,13 +3257,24 @@
             const nomeCompleto = document.getElementById('whatsappNome').value.trim();
             const email = document.getElementById('whatsappEmail').value.trim();
             const empresaNome = document.getElementById('empresaNome').value.trim();
+            const pergunta = document.getElementById('whatsappPergunta').value.trim();
             
             if (nomeCompleto && email && empresaNome) {
+                // Montar a descrição combinando empresa + pergunta
+                let descricao = `Empresa: ${empresaNome}`;
+                if (pergunta) {
+                    descricao += `\n\nMensagem: ${pergunta}`;
+                }
+                
+                // Preencher o campo hidden de descrição
+                document.getElementById('whatsappDescription').value = descricao;
+                
                 // Tracking GoHighLevel - Manual Form Submit
                 try {
                     if (typeof window.LCTracker !== 'undefined') {
                         await window.LCTracker.submitForm(form);
                         console.log('[GHL] WhatsApp form submitted successfully');
+                        console.log('[GHL] Description sent:', descricao);
                     }
                 } catch (error) {
                     console.error('[GHL] Error submitting WhatsApp form:', error);
@@ -3259,7 +3284,13 @@
                 await new Promise(resolve => setTimeout(resolve, 500));
 
                 const phoneNumber = '5548998430114'; // +55 48 99843-0114
-                const message = `Olá, vim pela campanha do Google. Meu nome é ${nomeCompleto}, da empresa ${empresaNome}. E-mail: ${email}`;
+                let message = `Olá, vim pela campanha do Google.\n\nNome: ${nomeCompleto}\nEmpresa: ${empresaNome}\nE-mail: ${email}`;
+                
+                // Adiciona a pergunta se foi preenchida
+                if (pergunta) {
+                    message += `\n\nMensagem: ${pergunta}`;
+                }
+                
                 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 
                 // Abrir WhatsApp em nova aba
