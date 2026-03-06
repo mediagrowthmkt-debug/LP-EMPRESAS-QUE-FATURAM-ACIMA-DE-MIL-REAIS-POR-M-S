@@ -1617,12 +1617,12 @@
                             <div class="progress-bar-fill" id="progressBarHero" style="width: 0%; height: 4px; background: var(--accent-gold); border-radius: 2px; transition: width 0.3s ease;"></div>
                         </div>
                         
-                        <form id="leadFormHero" action="#" method="POST">
+                        <form id="leadFormHero" action="#" method="POST" name="lead_form_hero">
                             <!-- Step 1: Nome -->
                             <div class="form-step active" data-step="1">
                                 <div class="form-group">
                                     <label for="nome_hero">Qual o seu nome? *</label>
-                                    <input type="text" class="form-control" id="nome_hero" name="nome" required 
+                                    <input type="text" class="form-control" id="nome_hero" name="full_name" required 
                                            placeholder="Digite seu nome completo">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
@@ -1634,7 +1634,7 @@
                             <div class="form-step" data-step="2" style="display: none;">
                                 <div class="form-group">
                                     <label for="empresa_hero">Qual o nome da sua empresa? *</label>
-                                    <input type="text" class="form-control" id="empresa_hero" name="empresa" required 
+                                    <input type="text" class="form-control" id="empresa_hero" name="company_name" required 
                                            placeholder="Nome da sua empresa">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
@@ -1658,7 +1658,7 @@
                             <div class="form-step" data-step="4" style="display: none;">
                                 <div class="form-group">
                                     <label for="telefone_hero">Qual o seu WhatsApp? *</label>
-                                    <input type="tel" class="form-control telefone-mask" id="telefone_hero" name="telefone" required 
+                                    <input type="tel" class="form-control telefone-mask" id="telefone_hero" name="phone" required 
                                            placeholder="(11) 99999-9999">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
@@ -2343,12 +2343,12 @@
                             <div class="progress-bar-fill" id="progressBar" style="width: 0%; height: 4px; background: var(--accent-gold); border-radius: 2px; transition: width 0.3s ease;"></div>
                         </div>
                         
-                        <form id="leadForm" action="#" method="POST">
+                        <form id="leadForm" action="#" method="POST" name="lead_form_main">
                             <!-- Step 1: Nome -->
                             <div class="form-step active" data-step="1">
                                 <div class="form-group">
                                     <label for="nome">Qual o seu nome? *</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" required 
+                                    <input type="text" class="form-control" id="nome" name="full_name" required 
                                            placeholder="Digite seu nome completo">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
@@ -2360,7 +2360,7 @@
                             <div class="form-step" data-step="2" style="display: none;">
                                 <div class="form-group">
                                     <label for="empresa">Qual o nome da sua empresa? *</label>
-                                    <input type="text" class="form-control" id="empresa" name="empresa" required 
+                                    <input type="text" class="form-control" id="empresa" name="company_name" required 
                                            placeholder="Nome da sua empresa">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
@@ -2384,7 +2384,7 @@
                             <div class="form-step" data-step="4" style="display: none;">
                                 <div class="form-group">
                                     <label for="telefone">Qual o seu WhatsApp? *</label>
-                                    <input type="tel" class="form-control telefone-mask" id="telefone" name="telefone" required 
+                                    <input type="tel" class="form-control telefone-mask" id="telefone" name="phone" required 
                                            placeholder="(11) 99999-9999">
                                 </div>
                                 <button type="button" class="submit-btn next-step-btn">
