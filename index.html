@@ -1575,8 +1575,8 @@
                     <label for="whatsappPergunta">Sua Pergunta ou Mensagem (opcional)</label>
                     <textarea id="whatsappPergunta" rows="3" placeholder="Como podemos ajudar sua empresa?"></textarea>
                 </div>
-                <!-- Campo hidden que será preenchido com empresa + pergunta -->
-                <input type="hidden" id="whatsappDescription" name="description">
+                <!-- Campo de descrição - visível mas escondido com CSS para que o GHL capture -->
+                <textarea id="whatsappDescription" name="description" style="position: absolute; left: -9999px; width: 1px; height: 1px;" aria-hidden="true" tabindex="-1"></textarea>
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
                     Iniciar Conversa
@@ -3266,15 +3266,25 @@
                     descricao += `\n\nMensagem: ${pergunta}`;
                 }
                 
-                // Preencher o campo hidden de descrição
-                document.getElementById('whatsappDescription').value = descricao;
+                // Preencher o campo de descrição ANTES de enviar ao GHL
+                const descriptionField = document.getElementById('whatsappDescription');
+                descriptionField.value = descricao;
+                
+                console.log('[DEBUG] Nome:', nomeCompleto);
+                console.log('[DEBUG] Email:', email);
+                console.log('[DEBUG] Descrição montada:', descricao);
+                console.log('[DEBUG] Campo description value:', descriptionField.value);
                 
                 // Tracking GoHighLevel - Manual Form Submit
                 try {
                     if (typeof window.LCTracker !== 'undefined') {
                         await window.LCTracker.submitForm(form);
                         console.log('[GHL] WhatsApp form submitted successfully');
-                        console.log('[GHL] Description sent:', descricao);
+                        console.log('[GHL] Form data:', {
+                            full_name: nomeCompleto,
+                            email: email,
+                            description: descricao
+                        });
                     }
                 } catch (error) {
                     console.error('[GHL] Error submitting WhatsApp form:', error);
