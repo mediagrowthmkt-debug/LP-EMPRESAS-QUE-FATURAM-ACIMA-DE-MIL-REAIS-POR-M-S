@@ -1569,14 +1569,12 @@
                 </div>
                 <div class="whatsapp-form-group">
                     <label for="empresaNome">Nome da Empresa *</label>
-                    <input type="text" id="empresaNome" required placeholder="Digite o nome da sua empresa">
+                    <input type="text" id="empresaNome" name="nome_da_sua_empresa" required placeholder="Digite o nome da sua empresa">
                 </div>
                 <div class="whatsapp-form-group">
                     <label for="whatsappPergunta">Sua Pergunta ou Mensagem (opcional)</label>
-                    <textarea id="whatsappPergunta" rows="3" placeholder="Como podemos ajudar sua empresa?"></textarea>
+                    <textarea id="whatsappPergunta" name="qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto" rows="3" placeholder="Como podemos ajudar sua empresa?"></textarea>
                 </div>
-                <!-- Campo de descrição - visível mas escondido com CSS para que o GHL capture -->
-                <textarea id="whatsappDescription" name="description" style="position: absolute; left: -9999px; width: 1px; height: 1px;" aria-hidden="true" tabindex="-1"></textarea>
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
                     Iniciar Conversa
@@ -3260,20 +3258,10 @@
             const pergunta = document.getElementById('whatsappPergunta').value.trim();
             
             if (nomeCompleto && email && empresaNome) {
-                // Montar a descrição combinando empresa + pergunta
-                let descricao = `Empresa: ${empresaNome}`;
-                if (pergunta) {
-                    descricao += `\n\nMensagem: ${pergunta}`;
-                }
-                
-                // Preencher o campo de descrição ANTES de enviar ao GHL
-                const descriptionField = document.getElementById('whatsappDescription');
-                descriptionField.value = descricao;
-                
                 console.log('[DEBUG] Nome:', nomeCompleto);
                 console.log('[DEBUG] Email:', email);
-                console.log('[DEBUG] Descrição montada:', descricao);
-                console.log('[DEBUG] Campo description value:', descriptionField.value);
+                console.log('[DEBUG] Nome da Empresa:', empresaNome);
+                console.log('[DEBUG] Pergunta/Mensagem:', pergunta);
                 
                 // Tracking GoHighLevel - Manual Form Submit
                 try {
@@ -3283,7 +3271,8 @@
                         console.log('[GHL] Form data:', {
                             full_name: nomeCompleto,
                             email: email,
-                            description: descricao
+                            nome_da_sua_empresa: empresaNome,
+                            qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto: pergunta
                         });
                     }
                 } catch (error) {
