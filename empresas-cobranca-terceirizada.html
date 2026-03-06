@@ -34,6 +34,14 @@
         })(window, document, "clarity", "script", "ub90wwu448");
     </script>
     <!-- End Microsoft Clarity -->
+
+    <!-- GoHighLevel Tracking -->
+    <script 
+        src="https://link.msgsndr.com/js/external-tracking.js"
+        data-tracking-id="tk_fe2f51e951164d39a5605589a1622f3d"
+        data-debug="true">
+    </script>
+    <!-- End GoHighLevel Tracking -->
     
     <!-- FORÇA SCROLL PARA TOPO -->
     <script>
@@ -3192,6 +3200,15 @@
                 const message = `Olá, vim pela campanha do Google. Minha empresa é: ${empresaNome}`;
                 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 
+                // Tracking GoHighLevel - WhatsApp Contact
+                if (typeof window.LCTracker !== 'undefined') {
+                    window.LCTracker.track('whatsapp_contact', {
+                        empresa: empresaNome,
+                        contact_method: 'whatsapp',
+                        phone: phoneNumber
+                    });
+                }
+
                 // Abrir WhatsApp em nova aba
                 window.open(whatsappURL, '_blank');
                 
