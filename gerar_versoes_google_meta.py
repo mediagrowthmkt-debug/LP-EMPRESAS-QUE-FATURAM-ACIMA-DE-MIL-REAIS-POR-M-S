@@ -69,6 +69,12 @@ def set_campaign_source(html, source):
     return html
 
 
+def set_webhook_plataforma(html, source):
+    """Change the webhook plataforma field from 'organico' to google/meta"""
+    html = html.replace("plataforma: 'organico'", f"plataforma: '{source}'")
+    return html
+
+
 def add_utm_comment(html, source):
     """Add a HTML comment identifying the campaign source"""
     marker = "<!-- End Meta Pixel Code -->"
@@ -102,6 +108,7 @@ def process_lp(source_file, output_dir, campaign_source):
     # Apply transformations
     html = fix_asset_paths(html)
     html = set_campaign_source(html, campaign_source)
+    html = set_webhook_plataforma(html, campaign_source)
     html = add_utm_comment(html, campaign_source)
     html = fix_obrigado_link(html)
     

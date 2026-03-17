@@ -2983,10 +2983,12 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            nome: nome,
-                            phone: telefone,
+                            name: nome,
                             email: '',
-                            pergunta_qualificativa: valorTexto
+                            phone: telefone,
+                            pergunta_qualificativa: valorTexto,
+                            plataforma: 'google',
+                            nome_da_campanha: 'Líder Entre as Empresas de Cobrança Terceirizada'
                         })
                     });
                     console.log('[WEBHOOK] Dados enviados com sucesso');
