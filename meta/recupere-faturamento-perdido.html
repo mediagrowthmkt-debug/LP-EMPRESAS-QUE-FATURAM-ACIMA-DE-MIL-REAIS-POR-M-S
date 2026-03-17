@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Empresas de Cobrança Terceirizada | AMCC - Líder há 30+ Anos</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="Entre as melhores empresas de cobrança terceirizada do Brasil. R$ 2Bi+ recuperados, 85% de sucesso. Solução completa para grandes carteiras.">
+    <title>AMCC - Empresas +1M | Recupere 5-10% do Faturamento Perdido</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta name="description" content="Sua empresa fatura acima de 1 milhão por mês? 5-10% vira prejuízo por inadimplência. Recupere grandes carteiras com abordagem humanizada e zero custo antecipado.">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -24,6 +24,7 @@
     src="https://www.facebook.com/tr?id=1975375346337357&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+    <!-- Campaign Source: META ADS -->
     
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -261,18 +262,21 @@
         }
 
         .whatsapp-form-group input,
-        .whatsapp-form-group select {
+        .whatsapp-form-group select,
+        .whatsapp-form-group textarea {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
+            font-family: inherit;
             background: white;
         }
 
         .whatsapp-form-group input:focus,
-        .whatsapp-form-group select:focus {
+        .whatsapp-form-group select:focus,
+        .whatsapp-form-group textarea:focus {
             outline: none;
             border-color: #25D366;
         }
@@ -285,6 +289,10 @@
             background-position: right 12px center;
             background-size: 20px;
             padding-right: 40px;
+        }
+        .whatsapp-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         .whatsapp-submit-btn {
@@ -310,17 +318,24 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
+        /* WhatsApp CTA Buttons */
         .whatsapp-cta-btn {
             animation: pulse 2s infinite;
         }
+
         .whatsapp-cta-btn:hover {
             background: #128C7E !important;
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px) !important;
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5) !important;
         }
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         @keyframes fadeIn {
@@ -1583,37 +1598,37 @@
             <div class="whatsapp-modal-header">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Fale Conosco no WhatsApp</h3>
-                <p>Informe seus dados para contato</p>
+                <p>Preencha seus dados para iniciar a conversa</p>
             </div>
             <form id="whatsappForm" name="whatsapp_contact_form">
                 <div class="whatsapp-form-group">
-                    <label for="whatsappNome">Seu Nome *</label>
-                    <input type="text" id="whatsappNome" name="first_name" required placeholder="Digite seu primeiro nome">
+                    <label for="whatsappNome">Nome *</label>
+                    <input type="text" id="whatsappNome" name="first_name" required placeholder="Digite seu nome">
                 </div>
                 <div class="whatsapp-form-group">
                     <label for="empresaNome">Nome da Empresa *</label>
                     <input type="text" id="empresaNome" name="company_name" required placeholder="Digite o nome da sua empresa">
                 </div>
                 <div class="whatsapp-form-group">
-                    <label for="whatsappTelefone">Telefone / WhatsApp *</label>
-                    <input type="tel" id="whatsappTelefone" name="phone" class="telefone-mask" required placeholder="(11) 99999-9999">
+                    <label for="whatsappTelefone">Telefone de Contato *</label>
+                    <input type="tel" id="whatsappTelefone" name="phone" required placeholder="(00) 00000-0000" class="telefone-mask">
                 </div>
                 <div class="whatsapp-form-group">
-                    <label for="whatsappValor">Valor aproximado a receber (em aberto) *</label>
-                    <select id="whatsappValor" name="qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto" required>
-                        <option value="">Selecione o valor</option>
+                    <label for="valorInadimplencia">Valor Estimado de Inadimplência *</label>
+                    <select id="valorInadimplencia" name="qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto" required>
+                        <option value="">Selecione...</option>
                         <option value="50k_100k">R$ 50.000 - R$ 100.000</option>
                         <option value="100k_200k">R$ 100.000 - R$ 200.000</option>
-                        <option value="200k_500k">R$ 200.000 - R$ 500.000</option>
-                        <option value="500k_1m">R$ 500.000 - R$ 1.000.000</option>
-                        <option value="1m_3m">R$ 1.000.000 - R$ 3.000.000</option>
-                        <option value="3m_plus">Acima de R$ 3.000.000</option>
+                        <option value="200k_300k">R$ 200.000 - R$ 300.000</option>
+                        <option value="300k_400k">R$ 300.000 - R$ 400.000</option>
+                        <option value="400k_500k">R$ 400.000 - R$ 500.000</option>
+                        <option value="acima_500k">Acima de R$ 500.000</option>
                         <option value="nao_sei">Não sei informar</option>
                     </select>
                 </div>
                 <button type="submit" class="whatsapp-submit-btn">
                     <i class="fab fa-whatsapp"></i>
-                    Iniciar Conversa
+                    Iniciar Conversa no WhatsApp
                 </button>
             </form>
         </div>
@@ -1625,14 +1640,18 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content">
-                        <img src="logo amcc/logo branco.png" alt="Grupo AMCC" style="max-width: 180px; margin-bottom: 25px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));" class="fade-in">
+                        <img src="../logo amcc/logo branco.png" alt="Grupo AMCC" style="max-width: 180px; margin-bottom: 25px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));" class="fade-in">
                         
                         <h1 class="hero-title fade-in">
-                            Líder Entre as <span class="highlight">Empresas de Cobrança Terceirizada</span>
+                            Sua empresa perde até
+                            <span class="highlight">R$ 100 mil/mês</span>
+                            em inadimplência
                         </h1>
                         
                         <p class="hero-subtitle fade-in">
-                            Destaque entre as <strong>empresas de cobrança terceirizada</strong> do Brasil. O Grupo AMCC une 30+ anos de experiência, tecnologia avançada e jurídico integrado com <strong>zero custo antecipado</strong>.
+                            <strong>5% a 10% do seu faturamento vira prejuízo</strong> silenciosamente. 
+                            O Grupo AMCC recupera grandes carteiras com tecnologia avançada, 
+                            jurídico integrado e <strong>zero custo antecipado</strong>.
                         </p>
                         
                         <div class="hero-stats fade-in">
@@ -1656,49 +1675,54 @@
                     <div id="formulario" class="form-container scale-in" style="margin-top: 0; padding: 40px 30px; text-align: center;">
                         <div class="form-header">
                             <h2 style="font-size: 1.8rem; margin-bottom: 15px;">
-                                <i class="fas fa-chart-bar"></i> Análise Gratuita
+                                <i class="fas fa-chart-bar"></i> Análise Gratuita de Recuperação
                             </h2>
-                            <p style="font-size: 1rem; margin-bottom: 30px;">
+                            <p style="font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6;">
                                 Descubra quanto sua empresa pode recuperar. 
                                 <strong>Sem custo, sem compromisso.</strong>
                             </p>
                         </div>
                         
-                        <!-- WhatsApp CTA Button -->
-                        <button id="heroWhatsAppBtn" class="whatsapp-cta-btn" style="
+                        <!-- Botão WhatsApp Substitui Formulário -->
+                        <button type="button" class="whatsapp-cta-btn" id="heroWhatsAppBtn" style="
+                            width: 100%;
+                            padding: 20px 30px;
+                            font-size: 1.2rem;
+                            font-weight: 600;
                             background: #25D366;
                             color: white;
                             border: none;
-                            font-size: 1.2rem;
-                            font-weight: 600;
-                            padding: 20px 30px;
                             border-radius: 12px;
                             cursor: pointer;
-                            width: 100%;
-                            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
                             transition: all 0.3s ease;
+                            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            gap: 10px;
+                            gap: 12px;
+                            margin-bottom: 20px;
                         ">
                             <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
                             RECEBER ANÁLISE GRATUITA
                         </button>
                         
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 15px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros conosco
+                        </p>
+                        
                         <!-- Recovery Counter -->
                         <div class="recovery-counter">
                             <div class="recovery-label">
-                                <i class="fas fa-chart-line"></i> Valores Recuperados Sem Custo Antecipado
+                                <i class="fas fa-chart-line"></i> Valores Recuperados Hoje
                             </div>
                             <div class="recovery-amount negative" id="recoveryAmount">
-                                - R$ 0
+                                R$ 0
                             </div>
                             <div class="recovery-bar-container">
                                 <div class="recovery-bar" id="recoveryBar"></div>
                             </div>
                             <div class="recovery-status" id="recoveryStatus">
-                                Iniciando recuperação...
+                                Recuperando agora...
                             </div>
                             <div class="recovery-brand">
                                 Grupo AMCC Recuperando Seu Dinheiro
@@ -1716,11 +1740,11 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="section-title fade-in">
-                        O Que Nos Diferencia das Demais <span class="highlight">Empresas de Cobrança Terceirizada</span>?
+                        A <span class="highlight">Taxa Silenciosa</span> que Drena seu Lucro
                     </h2>
                     <p class="section-subtitle fade-in">
-                        Com empresas de cobrança terceirizada, empresas que faturam acima de 1 milhão por mês 
-                        recuperam o custo invisível da inadimplência que pode chegar a <strong>10% do faturamento</strong>.
+                        Empresas que faturam acima de 1 milhão por mês carregam um custo invisível: 
+                        a inadimplência que pode chegar a <strong>10% do faturamento</strong>.
                     </p>
                 </div>
             </div>
@@ -2006,8 +2030,8 @@
                                         muted
                                         playsinline
                                         webkit-playsinline
-                                        poster="capas/capa 1.png">
-                                        <source src="videos/video 1.mp4" type="video/mp4">
+                                        poster="../capas/capa 1.png">
+                                        <source src="../videos/video 1.mp4" type="video/mp4">
                                         Seu navegador não suporta vídeos HTML5.
                                     </video>
                                     <div class="video-overlay">
@@ -2046,8 +2070,8 @@
                                         muted
                                         playsinline
                                         webkit-playsinline
-                                        poster="capas/capa 2.png">
-                                        <source src="videos/video 2.mp4" type="video/mp4">
+                                        poster="../capas/capa 2.png">
+                                        <source src="../videos/video 2.mp4" type="video/mp4">
                                         Seu navegador não suporta vídeos HTML5.
                                     </video>
                                     <div class="video-overlay">
@@ -2086,8 +2110,8 @@
                                         muted
                                         playsinline
                                         webkit-playsinline
-                                        poster="capas/capa 3.png">
-                                        <source src="videos/video 3.mp4" type="video/mp4">
+                                        poster="../capas/capa 3.png">
+                                        <source src="../videos/video 3.mp4" type="video/mp4">
                                         Seu navegador não suporta vídeos HTML5.
                                     </video>
                                     <div class="video-overlay">
@@ -2126,8 +2150,8 @@
                                         muted
                                         playsinline
                                         webkit-playsinline
-                                        poster="capas/capa 4.png">
-                                        <source src="videos/video 4.mp4" type="video/mp4">
+                                        poster="../capas/capa 4.png">
+                                        <source src="../videos/video 4.mp4" type="video/mp4">
                                         Seu navegador não suporta vídeos HTML5.
                                     </video>
                                     <div class="video-overlay">
@@ -2253,28 +2277,28 @@
             
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/1.jpg" alt="Parceiro 1" class="parceiro-logo fade-in">
+                    <img src="../parceiros/1.jpg" alt="Parceiro 1" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/2.png" alt="Parceiro 2" class="parceiro-logo fade-in">
+                    <img src="../parceiros/2.png" alt="Parceiro 2" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/3.png" alt="Parceiro 3" class="parceiro-logo fade-in">
+                    <img src="../parceiros/3.png" alt="Parceiro 3" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/4.png" alt="Parceiro 4" class="parceiro-logo fade-in">
+                    <img src="../parceiros/4.png" alt="Parceiro 4" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/5.png" alt="Parceiro 5" class="parceiro-logo fade-in">
+                    <img src="../parceiros/5.png" alt="Parceiro 5" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/6.png" alt="Parceiro 6" class="parceiro-logo fade-in">
+                    <img src="../parceiros/6.png" alt="Parceiro 6" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/7.png" alt="Parceiro 7" class="parceiro-logo fade-in">
+                    <img src="../parceiros/7.png" alt="Parceiro 7" class="parceiro-logo fade-in">
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 mb-4 text-center">
-                    <img src="parceiros/8.png" alt="Parceiro 8" class="parceiro-logo fade-in">
+                    <img src="../parceiros/8.png" alt="Parceiro 8" class="parceiro-logo fade-in">
                 </div>
             </div>
         </div>
@@ -2288,18 +2312,18 @@
                 Mais de 30 anos de atuação só são possíveis com um time real, presente e especializado. Veja fotos autênticas da equipe que transforma inadimplência em receita todos os dias.
             </p>
             <div class="team-photo-stack fade-in" aria-label="Fotos sobrepostas da equipe AMCC">
-                <picture style="--i:0;" data-img="IMG_5636"><source srcset="fotos-equipe/IMG_5636.webp" type="image/webp"><img src="fotos-equipe/IMG_5636.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 1"></picture>
-                <picture style="--i:1;" data-img="IMG_5573"><source srcset="fotos-equipe/IMG_5573.webp" type="image/webp"><img src="fotos-equipe/IMG_5573.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 2"></picture>
-                <picture style="--i:2;" data-img="IMG_5616"><source srcset="fotos-equipe/IMG_5616.webp" type="image/webp"><img src="fotos-equipe/IMG_5616.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 3"></picture>
-                <picture style="--i:3;" data-img="IMG_5648"><source srcset="fotos-equipe/IMG_5648.webp" type="image/webp"><img src="fotos-equipe/IMG_5648.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 4"></picture>
-                <picture style="--i:4;" data-img="IMG_5651"><source srcset="fotos-equipe/IMG_5651.webp" type="image/webp"><img src="fotos-equipe/IMG_5651.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 5"></picture>
+                <picture style="--i:0;" data-img="IMG_5636"><source srcset="../fotos-equipe/IMG_5636.webp" type="image/webp"><img src="../fotos-equipe/IMG_5636.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 1"></picture>
+                <picture style="--i:1;" data-img="IMG_5573"><source srcset="../fotos-equipe/IMG_5573.webp" type="image/webp"><img src="../fotos-equipe/IMG_5573.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 2"></picture>
+                <picture style="--i:2;" data-img="IMG_5616"><source srcset="../fotos-equipe/IMG_5616.webp" type="image/webp"><img src="../fotos-equipe/IMG_5616.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 3"></picture>
+                <picture style="--i:3;" data-img="IMG_5648"><source srcset="../fotos-equipe/IMG_5648.webp" type="image/webp"><img src="../fotos-equipe/IMG_5648.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 4"></picture>
+                <picture style="--i:4;" data-img="IMG_5651"><source srcset="../fotos-equipe/IMG_5651.webp" type="image/webp"><img src="../fotos-equipe/IMG_5651.JPG" loading="lazy" alt="Equipe AMCC - Operação interna 5"></picture>
             </div>
             <div class="team-avatars fade-in" aria-hidden="true">
-                <div class="team-avatar selected" data-img="IMG_5636"><picture><source srcset="fotos-equipe/IMG_5636_avatar.webp" type="image/webp"><img src="fotos-equipe/IMG_5636.JPG" loading="lazy" alt="Equipe AMCC 1"></picture></div>
-                <div class="team-avatar" data-img="IMG_5573"><picture><source srcset="fotos-equipe/IMG_5573_avatar.webp" type="image/webp"><img src="fotos-equipe/IMG_5573.JPG" loading="lazy" alt="Equipe AMCC 2"></picture></div>
-                <div class="team-avatar" data-img="IMG_5616"><picture><source srcset="fotos-equipe/IMG_5616_avatar.webp" type="image/webp"><img src="fotos-equipe/IMG_5616.JPG" loading="lazy" alt="Equipe AMCC 3"></picture></div>
-                <div class="team-avatar" data-img="IMG_5648"><picture><source srcset="fotos-equipe/IMG_5648_avatar.webp" type="image/webp"><img src="fotos-equipe/IMG_5648.JPG" loading="lazy" alt="Equipe AMCC 4"></picture></div>
-                <div class="team-avatar" data-img="IMG_5651"><picture><source srcset="fotos-equipe/IMG_5651_avatar.webp" type="image/webp"><img src="fotos-equipe/IMG_5651.JPG" loading="lazy" alt="Equipe AMCC 5"></picture></div>
+                <div class="team-avatar selected" data-img="IMG_5636"><picture><source srcset="../fotos-equipe/IMG_5636_avatar.webp" type="image/webp"><img src="../fotos-equipe/IMG_5636.JPG" loading="lazy" alt="Equipe AMCC 1"></picture></div>
+                <div class="team-avatar" data-img="IMG_5573"><picture><source srcset="../fotos-equipe/IMG_5573_avatar.webp" type="image/webp"><img src="../fotos-equipe/IMG_5573.JPG" loading="lazy" alt="Equipe AMCC 2"></picture></div>
+                <div class="team-avatar" data-img="IMG_5616"><picture><source srcset="../fotos-equipe/IMG_5616_avatar.webp" type="image/webp"><img src="../fotos-equipe/IMG_5616.JPG" loading="lazy" alt="Equipe AMCC 3"></picture></div>
+                <div class="team-avatar" data-img="IMG_5648"><picture><source srcset="../fotos-equipe/IMG_5648_avatar.webp" type="image/webp"><img src="../fotos-equipe/IMG_5648.JPG" loading="lazy" alt="Equipe AMCC 4"></picture></div>
+                <div class="team-avatar" data-img="IMG_5651"><picture><source srcset="../fotos-equipe/IMG_5651_avatar.webp" type="image/webp"><img src="../fotos-equipe/IMG_5651.JPG" loading="lazy" alt="Equipe AMCC 5"></picture></div>
             </div>
             <div class="team-proof-text fade-in">
                 TIME REAL • ESTRUTURA PRÓPRIA • EXPERTISE COMPROVADA
@@ -2317,42 +2341,42 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="form-container scale-in" style="text-align: center;">
+                    <div class="form-container scale-in" style="text-align: center; padding: 50px 40px;">
                         <div class="form-header">
-                            <h2>
+                            <h2 style="font-size: 2rem; margin-bottom: 15px;">
                                 <i class="fas fa-chart-bar"></i> Análise Gratuita e Estratégica
                             </h2>
-                            <p>
+                            <p style="font-size: 1.1rem; margin-bottom: 35px;">
                                 Descubra quanto sua empresa pode recuperar em 12 meses. 
                                 <strong>Sem custo, sem compromisso.</strong>
                             </p>
                         </div>
                         
-                        <!-- WhatsApp CTA Button -->
-                        <button id="mainWhatsAppBtn" class="whatsapp-cta-btn" style="
+                        <!-- Botão WhatsApp Principal -->
+                        <button type="button" class="whatsapp-cta-btn" id="mainWhatsAppBtn" style="
+                            width: 100%;
+                            max-width: 500px;
+                            margin: 0 auto;
+                            padding: 22px 35px;
+                            font-size: 1.3rem;
+                            font-weight: 600;
                             background: #25D366;
                             color: white;
                             border: none;
-                            max-width: 500px;
-                            margin: 0 auto;
-                            font-size: 1.3rem;
-                            font-weight: 600;
-                            padding: 22px 35px;
                             border-radius: 12px;
                             cursor: pointer;
-                            width: 100%;
-                            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
                             transition: all 0.3s ease;
+                            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            gap: 12px;
+                            gap: 15px;
                         ">
-                            <i class="fab fa-whatsapp" style="font-size: 1.6rem;"></i>
+                            <i class="fab fa-whatsapp" style="font-size: 1.8rem;"></i>
                             SOLICITAR ANÁLISE ESTRATÉGICA
                         </button>
                         
-                        <div class="trust-badges" style="margin-top: 30px;">
+                        <div class="trust-badges" style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
                             <div class="trust-badge">
                                 <i class="fas fa-lock"></i>
                                 <span>Dados 100% Seguros (LGPD)</span>
@@ -2368,18 +2392,18 @@
                         </div>
                         
                         <!-- Recovery Counter Footer -->
-                        <div class="recovery-counter" style="margin-top: 30px;">
+                        <div class="recovery-counter" style="margin-top: 40px;">
                             <div class="recovery-label">
-                                <i class="fas fa-chart-line"></i> Valores Recuperados Sem Custo Antecipado
+                                <i class="fas fa-chart-line"></i> Valores Recuperados Hoje
                             </div>
                             <div class="recovery-amount negative" id="recoveryAmountFooter">
-                                - R$ 0
+                                R$ 0
                             </div>
                             <div class="recovery-bar-container">
                                 <div class="recovery-bar" id="recoveryBarFooter"></div>
                             </div>
                             <div class="recovery-status" id="recoveryStatusFooter">
-                                Iniciando recuperação...
+                                Recuperando agora...
                             </div>
                             <div class="recovery-brand">
                                 Grupo AMCC Recuperando Seu Dinheiro
@@ -2396,7 +2420,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="logo amcc/logo branco.png" alt="AMCC Logo" style="max-width: 220px; margin-bottom: 30px; filter: brightness(1.1);">
+                    <img src="../logo amcc/logo branco.png" alt="AMCC Logo" style="max-width: 220px; margin-bottom: 30px; filter: brightness(1.1);">
                     <p style="font-size: 1.2rem; margin-bottom: 20px; font-weight: 600;">
                         <strong>Grupo AMCC - Especialistas em Grandes Carteiras</strong>
                     </p>
@@ -2487,6 +2511,9 @@
                 }
             });
         });
+
+        // REMOVIDO: Função initStepForm e suas chamadas
+        // Formulários multi-step removidos, agora usamos apenas modal WhatsApp
 
         // RECOVERY COUNTER ANIMATION - OTIMIZADO com requestAnimationFrame
         function animateRecoveryCounter(amountId = 'recoveryAmount', barId = 'recoveryBar', statusId = 'recoveryStatus') {
@@ -2582,6 +2609,9 @@
             const recoveryCounters = document.querySelectorAll('.recovery-counter');
             recoveryCounters.forEach(counter => observerRecovery.observe(counter));
         }
+
+        // REMOVIDO: Handlers dos formulários antigos (leadFormHero e leadForm)
+        // Agora todos os CTAs abrem o modal WhatsApp unificado
 
         // REMOVIDO: Efeito parallax (causa lag no scroll)
         // Parallax retirado para melhorar performance
@@ -2948,45 +2978,43 @@
             const nome = formData.get('first_name');
             const empresa = formData.get('company_name');
             const telefone = formData.get('phone');
-            const valorKey = formData.get('qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto');
+            const valorInadimplencia = document.getElementById('valorInadimplencia');
+            const valorTexto = valorInadimplencia.options[valorInadimplencia.selectedIndex].text;
             
-            // Mapear valor para texto legível
-            const valorTextos = {
-                '50k_100k': 'R$ 50.000 - R$ 100.000',
-                '100k_200k': 'R$ 100.000 - R$ 200.000',
-                '200k_500k': 'R$ 200.000 - R$ 500.000',
-                '500k_1m': 'R$ 500.000 - R$ 1.000.000',
-                '1m_3m': 'R$ 1.000.000 - R$ 3.000.000',
-                '3m_plus': 'Acima de R$ 3.000.000',
-                'nao_sei': 'Não sei informar'
-            };
-            const valorTexto = valorTextos[valorKey] || valorKey;
-            
-            if (nome && empresa && telefone && valorKey) {
-                // Envia para o GHL primeiro
-                if (typeof window.LCTracker !== 'undefined') {
-                    try {
-                        await window.LCTracker.submitForm(form);
-                        console.log('[GHL] WhatsApp Form submitted successfully');
-                    } catch (error) {
-                        console.error('[GHL] Error submitting WhatsApp Form:', error);
-                    }
-                }
+            if (nome && empresa && telefone) {
+                console.log('[DEBUG] Nome:', nome);
+                console.log('[DEBUG] Empresa:', empresa);
+                console.log('[DEBUG] Telefone:', telefone);
+                console.log('[DEBUG] Valor Inadimplência:', formData.get('qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto'));
                 
-                // Aguarda 500ms para garantir que o GHL processou
+                // Tracking GoHighLevel - Manual Form Submit
+                try {
+                    if (typeof window.LCTracker !== 'undefined') {
+                        await window.LCTracker.submitForm(form);
+                        console.log('[GHL] WhatsApp form submitted successfully');
+                        console.log('[GHL] Form data:', {
+                            first_name: nome,
+                            company_name: empresa,
+                            phone: telefone,
+                            qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto: formData.get('qual_o_valor_aproximado_sua_empresa_tem_a_receber_atualmente_em_aberto')
+                        });
+                    }
+                } catch (error) {
+                    console.error('[GHL] Error submitting WhatsApp form:', error);
+                }
+
+                // Aguardar GHL processar
                 await new Promise(resolve => setTimeout(resolve, 500));
 
-                // Montar mensagem WhatsApp
                 const phoneNumber = '5548998430114'; // +55 48 99843-0114
-                const message = `Olá, vim pela campanha do Google Ads - Landing Page Empresas AMCC.
-
-*Nome:* ${nome}
-*Empresa:* ${empresa}
-*Telefone:* ${telefone}
-*Valor Estimado em Inadimplência:* ${valorTexto}`;
+                let message = `Olá, vim pela campanha do Meta Ads (Facebook/Instagram) - Landing Page Empresas AMCC.\n\n`;
+                message += `*Nome:* ${nome}\n`;
+                message += `*Empresa:* ${empresa}\n`;
+                message += `*Telefone:* ${telefone}\n`;
+                message += `*Valor Estimado em Inadimplência:* ${valorTexto}`;
                 
                 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
+                
                 // Abrir WhatsApp em nova aba
                 window.open(whatsappURL, '_blank');
                 
@@ -3008,7 +3036,7 @@
                 }
 
                 // Redirecionar para página de obrigado
-                window.location.href = 'obrigado';
+                window.location.href = '../obrigado';
             }
         });
 
