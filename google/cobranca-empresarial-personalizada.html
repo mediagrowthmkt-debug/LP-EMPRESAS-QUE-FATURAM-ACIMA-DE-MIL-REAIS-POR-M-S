@@ -35,14 +35,6 @@
         })(window, document, "clarity", "script", "ub90wwu448");
     </script>
     <!-- End Microsoft Clarity -->
-
-    <!-- GoHighLevel Tracking -->
-    <script 
-        src="https://link.msgsndr.com/js/external-tracking.js"
-        data-tracking-id="tk_fe2f51e951164d39a5605589a1622f3d"
-        data-debug="true">
-    </script>
-    <!-- End GoHighLevel Tracking -->
     
     <!-- FORÇA SCROLL PARA TOPO -->
     <script>
@@ -2964,22 +2956,9 @@
             const valorTexto = valorTextos[valorKey] || valorKey;
             
             if (nome && empresa && telefone && valorKey) {
-                // Envia para o GHL primeiro
-                if (typeof window.LCTracker !== 'undefined') {
-                    try {
-                        await window.LCTracker.submitForm(form);
-                        console.log('[GHL] WhatsApp Form submitted successfully');
-                    } catch (error) {
-                        console.error('[GHL] Error submitting WhatsApp Form:', error);
-                    }
-                }
-                
-                // Aguarda 500ms para garantir que o GHL processou
-                await new Promise(resolve => setTimeout(resolve, 500));
-
                 // Enviar dados para webhook N8N
                 try {
-                    await fetch('https://mediagrowth-n8n.63kuy3.easypanel.host/webhook-test/f0832b2d-0bb8-49ce-87ec-61198314de5a', {
+                    await fetch('https://mediagrowth-n8n.63kuy3.easypanel.host/webhook/f0832b2d-0bb8-49ce-87ec-61198314de5a', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
